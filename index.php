@@ -46,20 +46,32 @@
         echo "Error creating table: " . mysqli_error($conn);
       }
 
-  $sql = "INSERT INTO users_table (username) VALUES ('John')";
+  // $sql = "INSERT INTO users_table (username) VALUES ('John')";
 
-  if (mysqli_query($conn, $sql)) {
-    echo "user created successfully";
-  } else {
-    echo "Error  record 1 : " . $sql . "<br>" . mysqli_error($conn);
+  // if (mysqli_query($conn, $sql)) {
+  //   echo "user created successfully";
+  // } else {
+  //   echo "Error  record 1 : " . $sql . "<br>" . mysqli_error($conn);
+  // }
+
+  // $sql = "INSERT INTO tasks_table (userid,task) VALUES ('sonthing good!', 1)";
+
+  // if (mysqli_query($conn, $sql)) {
+  //   echo "task created successfully";
+  // } else {
+  //   echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
+  // }
+   
+  $query= "SELECT id,task FROM `tasks_table`";
+  $result=mysqli_query($conn,$query);
+  /* This loop to echo all rows -Tasks- in tabel and mysqli_fetch_assoc build in
+   function to access the data inside the tabel */
+  while($row=mysqli_fetch_assoc($result))
+  {
+    echo"<br>". $row['id']; //ID To make tasks numbered
+    echo"=>".$row['task'],"<br>"; //the Task
   }
-
-  $sql = "INSERT INTO tasks_table (task, userid) VALUES ('sonthing good!', 1)";
-
-  if (mysqli_query($conn, $sql)) {
-    echo "task created successfully";
-  } else {
-    echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
-  }
+  
   mysqli_close($conn);
+
 ?>
