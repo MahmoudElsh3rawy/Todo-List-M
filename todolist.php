@@ -29,30 +29,45 @@
      }else{
     echo $conn->error;
      };
-
-    // create table and insert values 
+          // create table and insert values 
      $table="CREATE TABLE `users_table`(
-         `user_id` int(11) NOT NULL auto_increment,
-         `name` varchar(100) NOT NULL,
-         `password` varchar(100)  NOT NULL,
-          PRIMARY KEY  (`user_id`)
-       );";
-      $table="CREATE TABLE `users_table2`(
         `user_id` int(11) NOT NULL auto_increment,
         `name` varchar(100) NOT NULL,
-        `password` varchar(100)  NOT NULL,
+        `password` varchar(100)  NOT NULL,  
          PRIMARY KEY  (`user_id`)
       );";
+                
+     $runtable = $conn->query($table);
+     if($runtable){
+         echo "created table";
+     }else{
+         echo $conn->error;
+     }
 
-          /*
-  $runtable = $conn->query($table);
+     $insertvalues = "INSERT INTO users_table(name, password ) values ('turki', '123456');";
+  $runsql = $conn->query($insertvalues);
+  if ($runsql){
+      echo "inserted";
+  }else{
+      $conn->error; };
+
+      
+     $table2="CREATE TABLE `tasks_table`(
+        `task_id` int(11) NOT NULL auto_increment,
+        `task` text (100) NOT NULL,
+         PRIMARY KEY  (`task_id`),
+         FOREIGN KEY (`user_id`)
+      );";
+  $runtable = $conn->query($table2);
   if($runtable){
       echo "created table";
   }else{
       echo $conn->error;
   }
 
-  /*
+
+
+
   $insertvalues = "INSERT INTO users_table(name, password ) values ('turki', '123456');";
   $runsql = $conn->query($insertvalues);
   if ($runsql){
@@ -60,6 +75,5 @@
   }else{
       $conn->error; };
 
-*/
 
     
