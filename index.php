@@ -22,7 +22,8 @@
   // sql to create table
   $sql = "CREATE TABLE IF NOT EXISTS users_table (
   id INT(6) AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(30) NOT NULL
+  username VARCHAR(30) NOT NULL unique,
+  user_password VARCHAR(30) Not Null
   )";
 
   if (mysqli_query($conn, $sql)) {
@@ -62,4 +63,5 @@
     echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
   }
   mysqli_close($conn);
+
 ?>
