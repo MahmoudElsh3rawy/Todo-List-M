@@ -28,23 +28,24 @@ echo $conn->error;
 };
 // sql to create table
 $sql = "CREATE TABLE IF NOT EXISTS users_table (
-userid INT(6) AUTO_INCREMENT PRIMARY KEY,
+id INT(6) AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(30) NOT NULL
 )";
 
 if (mysqli_query($conn, $sql)) {
-  echo "Table users_table created successfully";
+  echo "Table users_table created successfully <br>";
 } else {
   echo "Error creating table  1  : " . mysqli_error($conn);
 }
 
 
 $sql = "CREATE TABLE IF NOT EXISTS tasks_table (
-    taskid INT(6)  AUTO_INCREMENT PRIMARY KEY,
-    task text(30) NOT NULL
-   /* userid int not null
-    foreign key (userid) references users_table(userid)*/
-   
+    id INT(6)  AUTO_INCREMENT PRIMARY KEY,
+    task text(30) NOT NULL,
+    userid int not null,
+
+    FOREIGN KEY (userid) REFERENCES users_table(id)
+	
     )";
     
     if (mysqli_query($conn, $sql)) {
@@ -53,20 +54,18 @@ $sql = "CREATE TABLE IF NOT EXISTS tasks_table (
       echo "Error creating table: " . mysqli_error($conn);
     }
 
-$sql = "INSERT INTO users_table (username)
-VALUES ('John')";
+$sql = "INSERT INTO users_table (username) VALUES ('John')";
 
 if (mysqli_query($conn, $sql)) {
-  echo "New record 1 created successfully";
+  echo "user created successfully";
 } else {
   echo "Error  record 1 : " . $sql . "<br>" . mysqli_error($conn);
 }
 
-$sql = "INSERT INTO tasks_table (task)
-VALUES ('Jogfgfgfgffgfgfffgfgfgfgfhn')";
+$sql = "INSERT INTO tasks_table (task, userid) VALUES ('sonthing good!', 1)";
 
 if (mysqli_query($conn, $sql)) {
-  echo "New record 2 created successfully";
+  echo "task created successfully";
 } else {
   echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
 }
