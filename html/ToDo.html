@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleT.css" type="text/css" media="screen"/>
+    <title>To Do List</title>
+    <link rel="icon" href="../image/social-foursquare-black.png" type="image/gif" sizes="16x16">
+
+</head>
+<body >
+    <header class="header">
+  
+        <div class="header-wrap">
+    
+  
+          <div class="logo plain logo-left">
+              <div class="site-title">
+                  <a>To Do List</a>
+              </div>
+          </div>
+          <nav id="nav" role="navigation">
+              <div class="table">
+                  <div class="table-cell">
+                      <ul id="menu-menu-1">
+                          <li class="menu-item">
+                              <a href="Register.html">To Do List</a></li>
+                          <li class="menu-item">
+                              <a href="#content">About Us</a></li>
+                          <li class="menu-item">
+                              <a href="Contact.html">Contact me</a></li>
+                          <li class="menu-inline menu-item">
+                              <a title="Git Hub" href="https://github.com/alikhaled17/TODO-LIST">
+                                  <img class="siz_git" src="../image/social-github-black.png" alt="Git Hub">
+                                  <i class="Git"></i><span class="i">Git Hub</span>
+                              </a></li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+      </div>
+  </header>
+
+    <div class="container">
+      <div class="heading">
+        <img class="heading__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/756881/laptop.svg">
+        <h1 class="heading__title">To-Do List</h1>
+      </div>
+      <form class="form">
+        <div>
+          <label class="form__label" for="todo">~ Today I need to ~</label>
+          <input class="form__input"
+               type="text" 
+               id="todo" 
+               name="to-do"
+               size="30"
+               required>
+          <button class="button"><span>Submit</span></button>
+        </div>
+      </form>
+      <div>
+        <ul class="toDoList">
+        </ul>
+      </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-wrap">
+            <div id="footer-text">&copy; 2020 To Do List.
+                Designed by <a href="" target="_blank">Team B</a>.</div>
+    
+            <a href="#top" id="btt">Top <i class="fa fa-chevron-up"></i></a>
+        </div>
+    </footer>
+
+      <script src="../js/scriptT.js"></script>
+      <script>var ie9 = false;</script>
+      <script src="../js/main.js"></script>
+</body>
+</html>
