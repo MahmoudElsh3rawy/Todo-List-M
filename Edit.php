@@ -1,6 +1,5 @@
 <?php
 include_once("config.php");
-include_once("CreatDBandTabels.php");
 if(isset($_POST['update']))
 {
 	$id = $_POST['id'];
