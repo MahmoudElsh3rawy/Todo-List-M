@@ -42,12 +42,15 @@
         include_once("config.php");
         if (isset($_POST['submit'])&& isset($_POST['task']) && ! empty($_POST['task']))
         {
-        $task=$_POST['task'];
-        $sql="SELECT task FROM `tasks_table` WHERE task LIKE '$task%'";
-        $result=mysqli_query($conn, $sql);
-        echo"Last Search ... <br>";
-        while($tasks = mysqli_fetch_array($result)) {
-            echo $tasks['task']."<br>";}
+            $task=$_POST['task'];
+            $sql="SELECT task FROM `tasks_table` WHERE task LIKE '$task%'";
+            $result=mysqli_query($conn, $sql);
+            echo"Last Search ... <br>";
+            if (!$tasks = mysqli_fetch_array($result))
+            {echo "<label style='color:red'>No Taska were found with you search <label>";}
+            while($tasks = mysqli_fetch_array($result)) {
+                echo $tasks['task']."<br>";}
+            
         }
         ?>
 
