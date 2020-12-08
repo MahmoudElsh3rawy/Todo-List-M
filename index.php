@@ -1,77 +1,91 @@
-<?PHP
-  include_once("config.php");
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+<html>
+<head>
+    <title>Home</title>
+</head>
 
-  // Create database
-  $sql = "CREATE DATABASE if not exists TODO_LIST_DB";
-  if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-  } else {
-    echo "Error creating database: " . $conn->error;
-  }
-  $usedb = "USE TODO_LIST_DB;";
-  $runusedb = $conn->query($usedb);
-  if($runusedb){
-      echo "  used  ";
-  }else{
-  echo $conn->error;
-  };
-  // sql to create table
-  $sql = "CREATE TABLE IF NOT EXISTS users_table (
-  id INT(6) AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(30) NOT NULL
-  )";
-
-  if (mysqli_query($conn, $sql)) {
-    echo "Table users_table created successfully <br>";
-  } else {
-    echo "Error creating table  1  : " . mysqli_error($conn);
-  }
-
-
-  $sql = "CREATE TABLE IF NOT EXISTS tasks_table (
-      id INT(6)  AUTO_INCREMENT PRIMARY KEY,
-      task text(30) NOT NULL,
-      userid int not null,
-      FOREIGN KEY (userid) REFERENCES users_table(id)
-    
-      )";
-      
-      if (mysqli_query($conn, $sql)) {
-        echo "Table tasks_table created successfully";
-      } else {
-        echo "Error creating table: " . mysqli_error($conn);
+<body>
+<!-- <div>
+    <label class="control-label" for="task">task</label>
+    <input type="text" id="task" onKeyUp="name_suggestion()">
+    <div id="suggestion"></div>
+</div>
+<script>
+    function name_suggestion() {
+      var name = document.getElementById("task").value; 
+      xhr = new XMLHttpRequest();
+      console.log(xhr, "xhr");
+      var data = "task=" + task;  
+      xhr.open("POST", "search.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(data);
+      xhr.onreadystatechange = display_data;
+      function display_data() { 
+            document.getElementById("suggestion").innerHTML = xhr.responseText;
       }
-
-  // $sql = "INSERT INTO users_table (username) VALUES ('John')";
-
-  // if (mysqli_query($conn, $sql)) {
-  //   echo "user created successfully";
-  // } else {
-  //   echo "Error  record 1 : " . $sql . "<br>" . mysqli_error($conn);
-  // }
-
-  // $sql = "INSERT INTO tasks_table (userid,task) VALUES ('sonthing good!', 1)";
-
-  // if (mysqli_query($conn, $sql)) {
-  //   echo "task created successfully";
-  // } else {
-  //   echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
-  // }
-   
-  $query= "SELECT id,task FROM `tasks_table`";
-  $result=mysqli_query($conn,$query);
-  /* This loop to echo all rows -Tasks- in tabel and mysqli_fetch_assoc build in
-   function to access the data inside the tabel */
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo"<br>". $row['id']; //ID To make tasks numbered
-    echo"=>".$row['task'],"<br>"; //the Task
-  }
-  
-  mysqli_close($conn);
-
+    }
+  </script> -->
+<form action="index.php" method="post" name="form1">
+		<table width="25%">
+			<tr>
+				<td>Text</td>
+				<td><input type="text" name="task"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" name="Submit" value="Add"></td>
+			</tr>
+		</table>
+</form>
+<?php
+    include_once("config.php");
+    include_once("CreatDBandTabels.php");
+    if(isset($_POST['Submit'])) {
+        if (isset($_POST['task']))
+        {
+            $task = $_POST['task']; 
+            $result = mysqli_query($conn,"INSERT INTO tasks_table (`task`,`userid`) VALUES ('$task',1)");
+            echo "<label style='color: green;'>User added successfully.</label>";                
+        }
+    }
+    $sqlSelect = "SELECT * FROM tasks_table ORDER BY id ";
+    $result = mysqli_query($conn, $sqlSelect) or die( mysqli_error($conn));
 ?>
+    <table width='80%' border=1>
+        <tr>
+            <th>id</th> 
+            <th>Tasks</th>
+            <?php
+               while($tasks = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>".$tasks['id']."</td>";
+                echo "<td>".$tasks['task']."</td>";
+                
+                echo "<td><a href='Delete.php?id=$tasks[id]' style='color:red'>Delete </a>";
+                echo" <a href='index.php?id=$tasks[id]'style='color:green'>Edit </a>
+                 </td>";
+               }
+               //Update...
+            //    if(isset($_POST['update']))
+            //     {
+            //         $id = $_POST['id'];
+            //         $task = $_POST['task']; 
+            //         $result = mysqli_query
+            //         ($conn, "UPDATE tasks_table SET task='$task' WHERE id=$id");
+            //         header("Location: index.php");
+            //     }
+            //         $id = $_GET['id']; 
+            //         $result = mysqli_query($conn, "SELECT * FROM tasks_table WHERE id=$id"); 
+            //         $user_data = mysqli_fetch_array($result);
+            //         $task = $user_data['task'];
+            //         echo"<input type='text' name='task' value='$task'>";
+            //         echo"<input type='hidden' name='id' value='$id'>";
+            //         echo"<input type='submit' name='update' value='Update'>";
+            exit;
+            ?>
+
+            
+        </tr>
+
+    </table>
+</body>
+</html>
