@@ -45,6 +45,7 @@
         $task=$_POST['task'];
         $sql="SELECT task FROM `tasks_table` WHERE task LIKE '$task%'";
         $result=mysqli_query($conn, $sql);
+        echo"Last Search ... <br>";
         while($tasks = mysqli_fetch_array($result)) {
             echo $tasks['task']."<br>";}
         }
