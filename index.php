@@ -23,7 +23,7 @@
   $sql = "CREATE TABLE IF NOT EXISTS users_table (
   id INT(6) AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(30) NOT NULL unique,
-  user_password VARCHAR(30) Not Null
+  userPassword VARCHAR(30) Not Null
   )";
 
   if (mysqli_query($conn, $sql)) {
@@ -47,21 +47,21 @@
         echo "Error creating table: " . mysqli_error($conn);
       }
 
-  $sql = "INSERT INTO users_table (username) VALUES ('John')";
+  // $sql = "INSERT INTO users_table (username) VALUES ('John')";
 
-  if (mysqli_query($conn, $sql)) {
-    echo "user created successfully";
-  } else {
-    echo "Error  record 1 : " . $sql . "<br>" . mysqli_error($conn);
-  }
+  // if (mysqli_query($conn, $sql)) {
+  //   echo "user created successfully";
+  // } else {
+  //   echo "Error  record 1 : " . $sql . "<br>" . mysqli_error($conn);
+  // }
 
-  $sql = "INSERT INTO tasks_table (task, userid) VALUES ('sonthing good!', 1)";
+  //$sql = "INSERT INTO tasks_table (task, userid) VALUES ('sonthing good!', 1)";
 
-  if (mysqli_query($conn, $sql)) {
-    echo "task created successfully";
-  } else {
-    echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
-  }
-  mysqli_close($conn);
+  // if (mysqli_query($conn, $sql)) {
+  //   echo "task created successfully";
+  // } else {
+  //   echo "Error record 2 : " . $sql . "<br>" . mysqli_error($conn);
+  // }
+  //mysqli_close($conn);
 
 ?>
