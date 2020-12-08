@@ -61,25 +61,9 @@
                 echo "<td>".$tasks['task']."</td>";
                 
                 echo "<td><a href='Delete.php?id=$tasks[id]' style='color:red'>Delete </a>";
-                echo" <a href='index.php?id=$tasks[id]'style='color:green'>Edit </a>
+                echo" <a href='Edit.php?id=$tasks[id]'style='color:green'>Edit </a>
                  </td>";
                }
-               //Update...
-            //    if(isset($_POST['update']))
-            //     {
-            //         $id = $_POST['id'];
-            //         $task = $_POST['task']; 
-            //         $result = mysqli_query
-            //         ($conn, "UPDATE tasks_table SET task='$task' WHERE id=$id");
-            //         header("Location: index.php");
-            //     }
-            //         $id = $_GET['id']; 
-            //         $result = mysqli_query($conn, "SELECT * FROM tasks_table WHERE id=$id"); 
-            //         $user_data = mysqli_fetch_array($result);
-            //         $task = $user_data['task'];
-            //         echo"<input type='text' name='task' value='$task'>";
-            //         echo"<input type='hidden' name='id' value='$id'>";
-            //         echo"<input type='submit' name='update' value='Update'>";
             exit;
             ?>
 
