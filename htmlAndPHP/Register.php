@@ -20,7 +20,7 @@
     
             <div class="logo plain logo-left">
                 <div class="site-title">
-                    <a href="index.html" title="Go to Home">To Do List</a>
+                    <a href="Home.php" title="Go to Home">To Do List</a>
                 </div>
             </div>
             <nav id="nav" role="navigation">
@@ -28,7 +28,7 @@
                     <div class="table-cell">
                         <ul id="menu-menu-1">
                             <li class="menu-item">
-                                <a href="Home.html">Home</a></li>
+                                <a href="Home.php">Home</a></li>
                             <li class="menu-item">
                                 <a href="Home.html#content">About Us</a></li>
                             <li class="menu-item">
@@ -46,7 +46,7 @@
     </header>
 <div class="Register" id="Register">
 	<div class="form-Register sign-up-Register">
-		<form action="#" class="form" action="" method="post">
+		<form action="#" class="form" action="" method="post" name="signUp">
 			<h1>Create Account</h1>
 			<div class="social-Register">
 				<a href="https://www.facebook.com/" class="social"><img src="../image/social-facebook-black.png" alt="facebook"><i class="facebook"></i></a>
@@ -54,16 +54,16 @@
 				<a href="https://www.linkedin.com/" class="social"><img src="../image/social-linkedin-black.png" alt="linkedin"><i class="linkedin"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" name="username" />
+			<input type="text" placeholder="Name" name="userName" />
 			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password"  name="password"/>
+			<input type="password" placeholder="Password"  name="Password"/>
 			<button name="submit">Sign Up</button>
 		</form>
 		<?php
 		include_once('config.php');
-		if (isset($_REQUEST['username'])&& isset($_REQUEST['password']) ) {
-			$username = $_POST['username'];
-			$password= $_POST['password'];
+		if (isset($_REQUEST['userName'])&& isset($_REQUEST['Password']) ) {
+			$username = $_POST['userName'];
+			$password= $_POST['Password'];
 			echo($username);
 			echo ($password);
 		 
@@ -72,55 +72,25 @@
 		   $result   = mysqli_query($conn, $query);
 		   
 		   if ($result ) {
-			   echo "<div class='form'>
-					 <h3>You are registered successfully.</h3><br/>
-					 <p class='link'>Click here to <a href='login.php'>Login</a></p>
-					 </div>";
+			//    echo "<div class='form'>
+			// 		 <h3>You are registered successfully.</h3><br/>
+			// 		 <p class='link'>Click here to <a href='login.php'>Login</a></p>
+			// 		 </div>";
 		   } else {
 			   echo "<div class='form'>
 					 <h3>Required fields are missing.</h3><br/>
-					 <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+					 <p class='link'>Click here to <a href='Register.php'>registeration</a> again.</p>
 					 </div>";
 		   }
 	   }
+	   
 		?>
 	</div>
 	<div class="form-Register sign-in-Register">
-	<?php
-    include_once('config.php');
-	session_start();
-    // When form submitted, check and create user session.
-    if (isset($_POST['username']) && isset($_REQUEST['password'])) {
-        $username = stripslashes($_REQUEST['username']);    // removes backslashes
-        $username = mysqli_real_escape_string($conn, $username);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($conn, $password);
-        // Check user is exist in the database
-
-
-        //$username = $_POST['username'];
-        //$password= $_POST['password'];
-        echo($username);
-        echo($password);
-        $query    = "SELECT * FROM users_table WHERE username='$username'
-                     AND userPassword='$password'";
-        $result = mysqli_query($conn, $query) or die(mysql_error());
-        $rows = mysqli_num_rows($result);
-        echo($rows);
-        if ($rows == 1) {
-            $_SESSION['username'] = $username;
-            // Redirect to user dashboard page
-            header("Location:ToDo.php");
-        } else {
-            echo "<div class='form'>
-                  <h3>Incorrect Username/password.</h3><br/>
-                  <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
-                  </div>";
-        }
-    } else {
-?>
-
-		<form action="#" class="form" method="post" name="login">
+		<?php
+			include_once("login.php");
+		?>
+		<form class="form" method="post" name="login">
 			<h1>Sign in</h1>
 			<div class="social-Register">
 				<a href="https://www.facebook.com/" class="social"><img src="../image/social-facebook-black.png" alt="facebook"><i class="facebook"></i></a>
@@ -128,14 +98,12 @@
 				<a href="https://www.linkedin.com/" class="social"><img src="../image/social-linkedin-black.png" alt="linkedin"><i class="linkedin"></i></a>
 			</div>
 			<span>or use your account</span>
-			<input type="text" placeholder="User Name" name="username"/>
+			<input type="text" placeholder="User Name" name="username" autofocus="true" />
 			<input type="password" placeholder="Password" name="password" />
 			<a href="#">Forgot your password?</a>
-			<button type="submit">Sign In</button>
+			<button name="login" type="submit" >Sign In</button>
 		</form>
-		<?php
-    }
-?>
+
 	</div>
 	<div class="overlay-Register">
 		<div class="overlay">

@@ -61,7 +61,7 @@
 
 <div class="home-sticky" id="content">
 
-  <h2 class="home-sticky-title">About Us</h2>
+  <h2 class="home-sticky-title"> About Us </h2>
 
 
   <div class="sticky-inner">
@@ -170,7 +170,7 @@
 
         <span class="post-image">
         <a>
-          <div class="pic"><img src="" alt=""></div>
+          <div class="pic"></div>
         </a>
         </span>
 
