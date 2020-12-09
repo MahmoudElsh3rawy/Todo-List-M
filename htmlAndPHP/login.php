@@ -10,18 +10,15 @@
         // Check user is exist in the database
 
 
-        //$username = $_POST['username'];
-        //$password= $_POST['password'];
-        echo($username);
-        echo($password);
         $query    = "SELECT * FROM users_table WHERE username='$username'
                      AND userPassword='$password'";
         $result = mysqli_query($conn, $query) or die(mysql_error());
         $rows = mysqli_num_rows($result);
-        echo($rows);
+
         if ($rows == 1) {
+            $user_data = mysqli_fetch_array($result);
             $_SESSION['username'] = $username;
-            // Redirect to user dashboard page
+            $_SESSION['id'] =  $user_data['id'];
             header("Location:ToDo.php");
         } else {
             echo "<div class='form'>

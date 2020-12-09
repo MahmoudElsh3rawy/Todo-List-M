@@ -36,7 +36,9 @@
             <th align='left'>Tasks</th>
             <?php
                 include_once("config.php");
-                $sqlSelect = "SELECT * FROM tasks_table";
+                session_start();
+                $x = $_SESSION['id'];
+                $sqlSelect = "SELECT * FROM tasks_table Where userid = '$x'";
                 $result = mysqli_query($conn, $sqlSelect) or die( mysqli_error($conn));
                 while($tasks = mysqli_fetch_array($result)) {
                 echo "<tr>";
@@ -65,7 +67,7 @@
             if (isset($_POST['submit'])&& isset($_POST['task']) && ! empty($_POST['task']))
             {
                 $task=$_POST['task'];
-                $sql="SELECT task FROM `tasks_table` WHERE task LIKE '$task%'";
+                $sql="SELECT task FROM `tasks_table` WHERE userid = '$x' and task LIKE '$task%'";
                 $result=mysqli_query($conn, $sql);
                 echo" <br>Last Search ... <br>";
                 while($tasks = mysqli_fetch_array($result)) {
