@@ -42,7 +42,7 @@
                 while($tasks = mysqli_fetch_array($result)) {
                 echo "<tr>";
                 echo "<td>".$tasks['task']."</td>";
-                echo "<td><a href='Delete.php?id=$tasks[id]'> <img src='../image/Delete.png' width='20px'> </a>";
+                echo "<td style='text-align:right'><a href='Delete.php?id=$tasks[id]'> <img src='../image/Delete.png' width='20px'> </a>";
                 echo" <a href='Edit.php?id=$tasks[id]''><img src='../image/edit_.png' width='20px'> </a> 
                     </td>";
                 }
