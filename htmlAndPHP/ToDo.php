@@ -11,7 +11,6 @@
 </head>
 <body >  
         <div>
-            <a href='Home.php' class="button2">Home</a>
             <a href='logout.php' class="button1">Logout</a>
       </div>
     <div class="container">

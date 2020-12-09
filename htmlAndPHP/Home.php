@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<? include_once("config.php");?>
 <html class="home blog no-js" lang="en-US">
 <head>
     <meta charset="UTF-8">

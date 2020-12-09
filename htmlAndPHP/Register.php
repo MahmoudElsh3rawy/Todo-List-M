@@ -55,19 +55,20 @@
 			</div>
 			<span>or use your email for registration</span>
 			<input type="text" placeholder="Name" name="userName" />
-			<input type="email" placeholder="Email" />
+			<input type="email" placeholder="Email" name="email"/>
 			<input type="password" placeholder="Password"  name="Password"/>
 			<button name="submit">Sign Up</button>
 		</form>
 		<?php
 		include_once('config.php');
-		if (isset($_REQUEST['userName'])&& isset($_REQUEST['Password']) ) {
+		if (isset($_REQUEST['userName'])&& isset($_REQUEST['Password'])&& isset($_REQUEST['email'])) {
 			$username = $_POST['userName'];
 			$password= $_POST['Password'];
+			$email= $_POST['email'];
 			echo($username);
 			echo ($password);
-		 
-		   $query    =  "INSERT INTO users_table (username,userPassword) VALUES ('$username','$password')";
+			echo ($email);
+		   $query    =  "INSERT INTO users_table (username,userPassword,email) VALUES ('$username','$password','$email')";
 		   //var_dump($query);
 		   $result   = mysqli_query($conn, $query);
 		   
