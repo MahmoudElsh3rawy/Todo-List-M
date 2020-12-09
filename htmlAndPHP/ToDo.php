@@ -27,7 +27,7 @@
                name="task"
                size="30"
                required>
-          <button name="Submit" class="button"><span>Submit</span></button>
+          <button name="Submit" class="button"><span>Add Task</span></button>
         </div>
       </form>
       <div>
